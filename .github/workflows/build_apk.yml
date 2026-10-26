@@ -48,6 +48,17 @@ jobs:
     - name: Assemble Release APK
       run: ./gradlew assembleRelease --stacktrace
 
+    # ===== 新增的 Debug 构建和上传步骤开始 =====
+    - name: Assemble Debug APK
+      run: ./gradlew assembleDebug --stacktrace
+
+    - name: Upload Debug APK
+      uses: actions/upload-artifact@v7
+      with:
+        name: TouchHelper-Debug
+        path: ./app/build/outputs/apk/debug/*.apk
+    # ===== 新增的 Debug 构建和上传步骤结束 =====
+
     - name: Upload APK to artifacts
       uses: actions/upload-artifact@v7
       with:
